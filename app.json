@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/diary/diary",
+    "pages/logs/logs"
+  ],
+  "debug": true
+}
