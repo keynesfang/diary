@@ -1,0 +1,96 @@
+.top-handle {
+    height: 80rpx;
+}
+.prev {
+    text-align: right;
+    height: 80rpx;
+}
+.next {
+    height: 80rpx;
+}
+.prev-handle {
+    width: 80rpx;
+    height: 100%;
+}
+.next-handle {
+    width: 80rpx;
+    height: 100%;
+}
+.date-area {
+    width: 50%;
+    height: 80rpx;
+    text-align: center;
+}
+.weeks {
+    height: 50rpx;
+    line-height: 50rpx;
+    opacity: 0.5
+}
+.week {
+    text-align: center;
+}
+.days {
+    height: 500rpx;
+}
+.grid {
+    width: 107.1428571429rpx;
+}
+.day {
+    width: 60rpx;
+    height: 60rpx;
+    color: #000;
+    font-size: 26rpx;
+    font-weight: 200;
+}
+.border-radius {
+    border-radius: 50%;
+    position: relative;
+    left: 0;
+    top: 0;
+    color: #fff;
+}
+.bg-color {
+    background-color: #1AAD19;
+}
+.box {
+    display: flex;
+}
+.box-lr {
+    flex-direction: row;
+}
+.box-rl {
+    flex-direction: row-reverse;
+}
+.box-tb {
+    flex-direction: column;
+}
+.box-bt {
+    flex-direction: column-reverse;
+}
+.box-pack-center {
+    justify-content: center;
+}
+.box-align-center {
+    align-items: center;
+}
+.box-wrap {
+    flex-wrap: wrap;
+}
+.flex {
+    flex-grow: 1;
+}
+.white-color {
+  color: #fff;
+}
+.fs24 {
+  font-size: 24rpx;
+}
+.fs28 {
+  font-size: 28rpx;
+}
+.fs32 {
+  font-size: 32rpx;
+}
+.fs36 {
+  font-size: 36rpx;
+}

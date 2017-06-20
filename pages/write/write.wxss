@@ -1,0 +1,8 @@
+/* write.wxss */
+.page {
+  opacity: 0;
+}
+.header {
+  background-color: #1AAD19;
+  height: 200rpx;
+}

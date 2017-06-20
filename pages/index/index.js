@@ -1,10 +1,23 @@
 //index.js
+var util = require('../../utils/util.js')
 //获取应用实例
 var app = getApp()
 Page({
   data: {
+    animation_logo: {},
+    animation_page: {},
     netWorkType: "",
     userInfo: null
+  },
+  onShow: function () {
+    var animation_logo = wx.createAnimation({
+      timingFunction: 'linear',
+    })
+    animation_logo.scale(1.2, 1.2).rotate(360).step()
+    animation_logo.scale(1, 1).step()
+    this.setData({
+      animation_logo: animation_logo.export()
+    })
   },
   onLoad: function () {
     var that = this
@@ -30,9 +43,7 @@ Page({
       path: '/pages/index/index'
     }
   },
-  start_diary: function() {
-    wx.navigateTo({
-      url: '/pages/diary/diary',
-    })
+  start_diary: function () {
+    util.gotoOtherPage(this, "/pages/diary/diary");
   }
 })

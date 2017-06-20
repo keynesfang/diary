@@ -1,0 +1,5 @@
+<!--write.wxml-->
+<view class="page" animation="{{animation_page}}">
+<view class="header">
+</view>
+</view>

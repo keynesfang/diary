@@ -1,31 +1,36 @@
 <!--index.wxml-->
-<view class="page__hd">
-  <view class="page__title">时刻微日记</view>
-  <view class="page__desc">时刻微日记 时刻记录你生命中的点点滴滴，如积沙成塔，如滴水成海，把你生命中的每一天纺织出一幅最炫丽的画。</view>
-</view>
-
-<view class="page__bd page__bd_spacing">
-  <view class="kind-list">
-    <view class="kind-list__item">
-      <view id="user" class="weui-flex kind-list__item-hd">
-        <view class="weui-flex__item">欢迎，{{userInfo.nickName}}</view>
-        <image class="kind-list__img" src="{{userInfo.avatarUrl}}"></image>
-      </view>
-    </view>
-    <view class="kind-list__item">
-      <view id="user" class="weui-flex kind-list__item-hd">
-        <view class="weui-flex__item">当前网络类型</view>
-        <text class="kind-list__img">{{netWorkType}}</text>
-      </view>
-    </view>
+<view animation="{{animation_page}}">
+  <view class="page__hd">
+    <image animation="{{animation_logo}}" class="logo" src="/images/logo.png"></image>
+    <view class="page__title">时刻微日记</view>
+    <view class="page__desc">时刻微日记 时刻记录你生命中的点点滴滴，如积沙成塔，如滴水成海，把你生命中的每一天纺织出一幅最炫丽的画。</view>
   </view>
 
-  <button class="weui-btn" type="primary" bindtap="start_diary">开启我的日记之旅</button>
-
-  <view class="weui-footer weui-footer_fixed-bottom">
-    <view class="weui-footer__links">
-      <navigator url="" class="weui-footer__link">时刻微日记</navigator>
+  <view class="page__bd page__bd_spacing">
+    <view class="kind-list">
+      <view class="kind-list__item">
+        <view id="user" class="weui-flex kind-list__item-hd">
+          <view class="weui-flex__item">欢迎，
+            <text class="username">{{userInfo.nickName}}</text>
+          </view>
+          <image class="kind-list__img" src="{{userInfo.avatarUrl}}"></image>
+        </view>
+      </view>
+      <view class="kind-list__item">
+        <view id="user" class="weui-flex kind-list__item-hd">
+          <view class="weui-flex__item">当前网络类型</view>
+          <text class="kind-list__img">{{netWorkType}}</text>
+        </view>
+      </view>
     </view>
-    <view class="weui-footer__text">Copyright © 2017-2020 By Keynes</view>
+
+    <button class="weui-btn" type="primary" bindtap="start_diary">开启我的日记之旅</button>
+
+    <view class="weui-footer weui-footer_fixed-bottom">
+      <view class="weui-footer__links">
+        <navigator url="" class="weui-footer__link">时刻微日记</navigator>
+      </view>
+      <view class="weui-footer__text">Copyright © 2017-2020 By Keynes</view>
+    </view>
   </view>
 </view>

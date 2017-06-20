@@ -1,1 +1,32 @@
 /* diary.wxss */
+@import '/style/kind_list.wxss';
+@import '/style/date_picker.wxss';
+.page {
+  opacity: 0;
+}
+.split-line {
+  border-bottom: 1px silver solid;
+}
+.username {
+  color: blue;
+}
+.today {
+  width: 30px;
+  height: 30px;
+  background-color: #1AAD19;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+}
+.date-next {
+  margin-left: 20px;
+}
+.date-prev {
+  margin-right: 20px;
+}
+.weui-btn {
+  width: 90%;
+}
+.date-in-button {
+  margin-right: 30px;
+}
