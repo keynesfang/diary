@@ -9,13 +9,7 @@ Page({
     hasEmptyGrid: false 
   },
   onShow: function () {
-    var animation_show = wx.createAnimation({
-      timingFunction: 'linear',
-    })
-    animation_show.opacity(1).step()
-    this.setData({
-      animation_page: animation_show.export()
-    })
+    util.showCurrentPage(this);
   },
   onLoad(options) {
     var that = this
@@ -55,6 +49,10 @@ Page({
     var cur_day = e.currentTarget.dataset.day;
     const diary_day = cur_year + "/" + cur_month + "/" + cur_day;
     const today = "" + cur_year + cur_month + cur_day;
+    wx.setStorage({
+      key: "diary_date",
+      data: diary_day
+    })
     this.setData({
       diary_day,
       today

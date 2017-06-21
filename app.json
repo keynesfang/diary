@@ -3,7 +3,44 @@
     "pages/write/write",
     "pages/diary/diary",
     "pages/index/index",
+    "pages/record/record",
+    "pages/sample/sample",
     "pages/logs/logs"
   ],
-  "debug": true
+  "debug": true,
+  "tabBar": {
+    "selectedColor": "#1AAD19",
+    "list": [
+      {
+        "iconPath": "/images/signboard.png",
+        "selectedIconPath": "/images/signboard_press.png",
+        "pagePath": "pages/index/index",
+        "text": "简介"
+      },
+      {
+        "iconPath": "/images/calendar.png",
+        "selectedIconPath": "/images/calendar_press.png",
+        "pagePath": "pages/diary/diary",
+        "text": "日期"
+      },
+      {
+        "iconPath": "/images/edit.png",
+        "selectedIconPath": "/images/edit_press.png",
+        "pagePath": "pages/write/write",
+        "text": "编辑"
+      },
+      {
+        "iconPath": "/images/account.png",
+        "selectedIconPath": "/images/account_press.png",
+        "pagePath": "pages/record/record",
+        "text": "日记"
+      },
+      {
+        "iconPath": "/images/sample.png",
+        "selectedIconPath": "/images/sample_press.png",
+        "pagePath": "pages/sample/sample",
+        "text": "样例"
+      }
+    ]
+  }
 }

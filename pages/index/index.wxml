@@ -23,14 +23,5 @@
         </view>
       </view>
     </view>
-
-    <button class="weui-btn" type="primary" bindtap="start_diary">开启我的日记之旅</button>
-
-    <view class="weui-footer weui-footer_fixed-bottom">
-      <view class="weui-footer__links">
-        <navigator url="" class="weui-footer__link">时刻微日记</navigator>
-      </view>
-      <view class="weui-footer__text">Copyright © 2017-2020 By Keynes</view>
-    </view>
   </view>
 </view>

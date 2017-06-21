@@ -1,25 +1,19 @@
 <!--diary.wxml-->
 <view class="page" animation="{{animation_page}}">
-  <view class="kind-list">
-    <view class="kind-list__item">
-      <view class="split-line weui-flex kind-list__item-hd">
-        <view class="weui-flex__item">欢迎，
-          <text class="username">{{userInfo.nickName}}</text>
-        </view>
-        <image class="kind-list__img" src="{{userInfo.avatarUrl}}"></image>
-      </view>
-      <view class="split-line weui-flex kind-list__item-hd" style="padding: 10px 20px; margin-top:5px;">
-        <view class="weui-flex__item">
-          <text class="date-prev" bindtap="handleCalendar" data-handle="prev">《</text>
-          {{cur_year || "--"}} 年 {{cur_month || "--"}} 月
-          <text class="date-next" bindtap="handleCalendar" data-handle="next">》</text>
-        </view>
-        <text class="today" bindtap="show_today">今</text>
-      </view>
+  <view class="header">
+    <image class="header_image" src="/images/bg.png"></image>
+    <view class="diary_date">
+      <text class="date-prev" bindtap="handleCalendar" data-handle="prev">《</text>
+      {{cur_year || "--"}} 年 {{cur_month || "--"}} 月
+      <text class="date-next" bindtap="handleCalendar" data-handle="next">》</text>
     </view>
+    <view>
+      <text class="user_name">{{userInfo.nickName}}</text>
+    </view>
+    <image class="user_image" src="{{userInfo.avatarUrl}}"></image>
   </view>
 
-  <view class="split-line flex box box-tb box-align-center">
+  <view id="calendar" class="flex box box-tb box-align-center">
     <view class="calendar box box-tb">
       <view class="weeks box box-lr box-pack-center box-align-center">
         <view class="flex week fs28" wx:for="{{weeks_ch}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
@@ -34,16 +28,8 @@
     </view>
   </view>
 
-  <button class="weui-btn" type="primary" bindtap="start_write">
-    日期：
-    <text class="date-in-button">{{diary_day}}</text>
-    - 开记 -
-  </button>
-
-  <view class="weui-footer weui-footer_fixed-bottom">
-    <view class="weui-footer__links">
-      <navigator url="" class="weui-footer__link">时刻微日记</navigator>
-    </view>
-    <view class="weui-footer__text">Copyright © 2017-2020 By Keynes</view>
+  <view id="footer">
+    <view class="select_date">当前选择日期：{{diary_day}}</view>
+    <view class="today" bindtap="show_today">今天</view>
   </view>
 </view>

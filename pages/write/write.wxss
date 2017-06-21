@@ -3,6 +3,73 @@
   opacity: 0;
 }
 .header {
-  background-color: #1AAD19;
+  height: 250rpx;
+}
+.header_image {
   height: 200rpx;
+  width: 100%;
+}
+.diary_date {
+  position: absolute;
+  font-weight: bold;
+  top: 50rpx;
+  left: 50rpx;
+  color: #fff;
+}
+.user_name {
+  position: absolute;
+  top: 140rpx;
+  right: 170rpx;
+  font-weight: bold;
+  color: #fff;
+}
+.user_image {
+  border: 1px solid #fff;
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  top: 120rpx;
+  right: 30rpx;
+}
+.input_image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.input_pos {
+  position: absolute;
+  bottom: 20rpx;
+}
+.speak {
+  left: 30rpx;
+}
+.text_input {
+  left: 130rpx;
+  width: 380rpx;
+  border-bottom: 1px solid #1AAD19;
+}
+.smile {
+  left: 530rpx;
+}
+.add {
+  left: 640rpx;
+}
+.send {
+  left: 600rpx;
+}
+.diary_body {
+  padding-left: 5%;
+  height: 600rpx;
+}
+.diary_content_style {
+  color: #fff;
+  width: 90%;
+  height: 800rpx;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #1AAD19;
+  margin-bottom: 10px;
+}
+.footer {
+  position: fixed;
+  background-color: #fff;
 }

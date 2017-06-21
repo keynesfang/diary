@@ -10,23 +10,59 @@
 .username {
   color: blue;
 }
-.today {
-  width: 30px;
-  height: 30px;
-  background-color: #1AAD19;
-  color: #fff;
-  text-align: center;
-  line-height: 30px;
-}
 .date-next {
   margin-left: 20px;
 }
 .date-prev {
   margin-right: 20px;
 }
-.weui-btn {
-  width: 90%;
+.header {
+  height: 300rpx;
 }
-.date-in-button {
-  margin-right: 30px;
+#calendar {
+  height: 600rpx;
+}
+#footer {
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  height: 100rpx;
+  width: 100%;
+}
+.header_image {
+  height: 200rpx;
+  width: 100%;
+}
+.diary_date {
+  position: absolute;
+  font-weight: bold;
+  top: 50rpx;
+  left: 50rpx;
+  color: #fff;
+}
+.user_name {
+  position: absolute;
+  top: 140rpx;
+  right: 170rpx;
+  font-weight: bold;
+  color: #fff;
+}
+.user_image {
+  border: 1px solid #fff;
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  top: 120rpx;
+  right: 30rpx;
+}
+.select_date {
+  width: 600rpx;
+  background-color: #1AAD19;
+  display: inline-block;
+
+}
+.today {
+  width: 150rpx;
+  background-color: cornflowerblue;
+  display: inline-block;
 }

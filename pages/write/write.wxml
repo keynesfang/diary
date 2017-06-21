@@ -1,5 +1,32 @@
 <!--write.wxml-->
+<template name="diary_content">
+
+  <view class="diary_content_style">
+    <text>{{time}}: {{content}} </text>
+  </view>
+</template>
+
 <view class="page" animation="{{animation_page}}">
-<view class="header">
-</view>
+  <view class="header">
+    <image class="header_image" src="/images/bg.png"></image>
+    <view class="diary_date">日期：{{diary_date}}</view>
+    <view>
+      <text class="user_name">{{userInfo.nickName}}</text>
+    </view>
+    <image class="user_image" src="{{userInfo.avatarUrl}}"></image>
+  </view>
+
+  <view class="diary_body">
+    <block wx:for="{{diary_content}}">
+      <template is="diary_content" data="{{...item}}" />
+    </block>
+  </view>
+
+  <view class="footer">
+    <image class="input_image input_pos speak" src="/images/speak.png"></image>
+    <input class="input_pos text_input" bindinput="bindDiaryInput" placeholder="输入日记内容"  value="{{input_diary_content}}" />
+    <image class="input_image input_pos smile" src="/images/smile.png"></image>
+    <image class="input_image input_pos add" src="/images/add.png"></image>
+    <button class="input_pos send weui-btn" bindtap="gen_diary_content" type="primary" size="mini" hidden="{{send_status}}">记 入</button>
+  </view>
 </view>
