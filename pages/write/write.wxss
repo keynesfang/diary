@@ -32,44 +32,71 @@
   right: 30rpx;
 }
 .input_image {
-  width: 60rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 .input_pos {
-  position: absolute;
-  bottom: 20rpx;
+  display: inline-block;
 }
 .speak {
-  left: 30rpx;
+  margin-left: 0rpx;
 }
 .text_input {
-  left: 130rpx;
-  width: 380rpx;
+  margin-left: 10rpx;
+  width: 430rpx;
   border-bottom: 1px solid #1AAD19;
 }
 .smile {
-  left: 530rpx;
+  margin-left: 10rpx;
 }
 .add {
-  left: 640rpx;
+  margin-left: 40rpx;
 }
 .send {
-  left: 600rpx;
+  position: absolute;
+  bottom: 10rpx;
+  left: 620rpx;
 }
 .diary_body {
-  padding-left: 5%;
-  height: 600rpx;
+  margin-left: 5%;
+}
+.diary_content {
+  width: 95%;
+}
+.diary_content_title {
+  margin-bottom: 5rpx;
 }
 .diary_content_style {
   color: #fff;
-  width: 90%;
-  height: 800rpx;
   border-radius: 5px;
   padding: 10px;
+  background-color: silver;
+  margin-bottom: 30rpx;
+}
+.save {
+  width: 90%;
   background-color: #1AAD19;
-  margin-bottom: 10px;
+  color: #fff;
+  margin-bottom: 100rpx;
 }
 .footer {
+  text-align: center;
+  width: 100%;
   position: fixed;
   background-color: #fff;
+  bottom: 0;
+}
+.picker {
+  display: inline-block;
+}
+.tip_text {
+  color: #1AAD19;
+}
+.time_picker {
+  margin-left: 50rpx;
+}
+.slider_bar {
+  margin: 0 0 20rpx 40rpx;
+  display: inline-block;
+  width: 400rpx;
 }

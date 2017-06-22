@@ -34,6 +34,10 @@ Page({
     const weeks_ch = ['日', '一', '二', '三', '四', '五', '六'];
     this.calculateEmptyGrids(cur_year, cur_month);
     this.calculateDays(cur_year, cur_month);
+    wx.setStorage({
+      key: "diary_date",
+      data: diary_day
+    });
     this.setData({
       cur_year,
       cur_month,
@@ -52,7 +56,7 @@ Page({
     wx.setStorage({
       key: "diary_date",
       data: diary_day
-    })
+    });
     this.setData({
       diary_day,
       today
