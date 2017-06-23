@@ -67,11 +67,14 @@
   margin-bottom: 5rpx;
 }
 .diary_content_style {
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: silver;
+  color: #000;
   margin-bottom: 30rpx;
+}
+.diary_image {
+  width: 200rpx;
+  height: 200rpx;
+  display: inline-block;
+  margin-left: 20rpx;
 }
 .save {
   width: 90%;

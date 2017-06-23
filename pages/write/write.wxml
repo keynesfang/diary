@@ -20,6 +20,9 @@
     <view class="diary_content_style" bindlongtap="diary_content_operation" data-idx="{{diary_content_index}}">
       <text>{{content}}</text>
     </view>
+    <block wx:for="{{image_list}}" wx:key="*this">
+      <image class="diary_image" src="{{item}}" catchlongtap="deleteImage" catchtap="previewImage" data-idx="{{diary_content_index}}" data-src="{{item}}"/>
+    </block>
   </view>
 </template>
 
@@ -46,6 +49,6 @@
     <input class="input_pos text_input" bindinput="bindDiaryInput" placeholder="输入日记内容" value="{{input_diary_content}}" />
     <image class="input_image input_pos smile" src="/images/smile.png"></image>
     <image class="input_image input_pos add" src="/images/add.png" bindtap="get_photo_operation"></image>
-    <button class="input_pos send weui-btn" bindtap="add_new_diary_content" type="primary" size="mini" hidden="{{send_status}}">{{edit_btn_text}}</button>
+    <button class="input_pos send weui-btn" bindtap="add_new_diary_content" type="primary" size="mini">{{edit_btn_text}}</button>
   </view>
 </view>

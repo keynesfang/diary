@@ -8,11 +8,12 @@ Page({
     input_diary_content: "",
     diary_type_array: ['未知', '工作', '学习', '生活', '娱乐', '旅游', '睡觉', '其它'],
     diary_content: [],
-    send_status: true,
     current_edit_content_index: -1,
-    edit_btn_text: "记"
+    edit_btn_text: "记",
+    event_lock: false
   },
   onLoad: function (options) {
+    util.showCurrentPage(this);
     var that = this;
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
@@ -22,7 +23,6 @@ Page({
     });
   },
   onShow: function () {
-    util.showCurrentPage(this);
     this.data.diary_content = [];
     this.data.current_edit_content_index = -1;
     var that = this;
@@ -30,19 +30,16 @@ Page({
       key: 'diary_date',
       success: function (res) {
         that.data.diary_date = res.data;
-        that.setData({
-          diary_date: res.data
-        });
         wx.getStorage({
           key: that.data.diary_date,
           success: function (res) {
             that.data.diary_content = res.data;
-            that.setData({
-              diary_content: res.data
-            });
           },
-          complete: function (res) {
-            that.add_new_diary_content();
+          complete: function () {
+            that.setData({
+              diary_date: that.data.diary_date,
+              diary_content: that.data.diary_content
+            });
           }
         });
       }
@@ -53,6 +50,11 @@ Page({
     wx.setStorage({
       key: this.data.diary_date,
       data: this.data.diary_content
+    });
+    wx.showToast({
+      title: '保存成功',
+      icon: 'success',
+      duration: 1000
     });
   },
   bindDiaryTypeChange: function (e) {
@@ -73,38 +75,67 @@ Page({
     var diary_content_index = e.currentTarget.dataset.idx;
     this.data.diary_content[diary_content_index].cost_time = e.detail.value
   },
-  get_photo_operation: function(e) {
+  diary_content_operation: function (e) {
+    var diary_content_index = e.currentTarget.dataset.idx;
     var that = this;
     wx.showActionSheet({
-      itemList: ['相 册', '拍 摄'],
+      itemList: ['相 册', '编 辑', '删 除'],
       success: function (res) {
         if (res.tapIndex == 0) {
           wx.chooseImage({
-            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
             success: function (res) {
-              // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-              var tempFilePaths = res.tempFilePaths
+              var tempFilePaths = res.tempFilePaths;
+              for (var imgIndex = 0; imgIndex < tempFilePaths.length; imgIndex++) {
+                wx.saveFile({
+                  tempFilePath: tempFilePaths[imgIndex],
+                  success: function (res) {
+                    that.data.diary_content[diary_content_index].image_list.push(res.savedFilePath);
+                    that.setData({
+                      diary_content: that.data.diary_content
+                    });
+                  }
+                });
+              }
             }
           });
-        } else {
+        } else if (res.tapIndex == 1) {
+          that.diary_content_edit(e);
+        } else if (res.tapIndex == 1) {
           that.diary_content_delete(e);
         }
       }
     });
   },
-  diary_content_operation: function (e) {
+  previewImage: function (e) {
+    if (!this.data.event_lock) {
+      var that = this;
+      wx.previewImage({
+        current: e.currentTarget.dataset.src,
+        urls: that.data.diary_content[e.currentTarget.dataset.idx].image_list
+      })
+    } else {
+      this.data.event_lock = false;
+    }
+  },
+  deleteImage: function (e) {
+    this.data.event_lock = true;
     var that = this;
-    wx.showActionSheet({
-      itemList: ['编 辑', '删 除'],
+    var cur_diary_content_index = e.currentTarget.dataset.idx;
+    var imageUrl = e.currentTarget.dataset.src;
+    var cur_image_index = this.data.diary_content[cur_diary_content_index].image_list.indexOf(imageUrl);
+    wx.showModal({
+      title: '提示',
+      content: '确认删除选中图片吗？',
       success: function (res) {
-        if (res.tapIndex == 0) {
-          that.diary_content_edit(e);
-        } else {
-          that.diary_content_delete(e);
+        if (res.confirm) {
+          that.data.diary_content[cur_diary_content_index].image_list.splice(cur_image_index, 1);
+          that.setData({
+            diary_content: that.data.diary_content
+          });
+        } else if (res.cancel) {
         }
       }
-    });
+    })
   },
   diary_content_delete: function (e) {
     var cur_diary_content_index = e.currentTarget.dataset.idx;
@@ -119,30 +150,14 @@ Page({
   diary_content_edit: function (e) {
     var cur_diary_content_index = e.currentTarget.dataset.idx;
     var diary_content = this.data.diary_content[cur_diary_content_index].content;
+    this.data.current_edit_content_index = cur_diary_content_index;
     this.setData({
       input_diary_content: diary_content,
       current_edit_content_index: cur_diary_content_index,
-      send_status: false,
       edit_btn_text: "改"
     });
   },
   bindDiaryInput: function (e) {
-    var cur_diary_content_index = this.data.current_edit_content_index;
-    if (cur_diary_content_index == -1) {
-      cur_diary_content_index = this.data.diary_content.length - 1;
-    }
-    this.data.diary_content[cur_diary_content_index].content = e.detail.value;
-    if (e.detail.value.length > 0) {
-      this.data.send_status = false;
-    } else {
-      this.data.send_status = true;
-    }
-    this.setData({
-      diary_content: this.data.diary_content,
-      send_status: this.data.send_status
-    });
-  },
-  add_new_diary_content: function () {
     if (this.data.current_edit_content_index == -1) {
       var current_diary_content_index = this.data.diary_content.length;
       var new_diary_content =
@@ -152,21 +167,29 @@ Page({
           cost_time: '0',
           diary_type: this.data.diary_type_array,
           diary_type_index: 0,
-          diary_content_index: current_diary_content_index
+          diary_content_index: current_diary_content_index,
+          image_list: []
         };
       this.data.diary_content.push(new_diary_content);
       this.setData({
         diary_content: this.data.diary_content,
-        send_status: true,
         input_diary_content: ""
       });
-    } else {
-      this.setData({
-        send_status: true,
-        input_diary_content: "",
-        edit_btn_text: "记"
-      });
-      this.data.current_edit_content_index = -1;
+      this.data.current_edit_content_index = this.data.diary_content.length - 1;
     }
+    var cur_diary_content_index = this.data.current_edit_content_index;
+
+    this.data.diary_content[cur_diary_content_index].content = e.detail.value;
+    this.setData({
+      diary_content: this.data.diary_content,
+      input_diary_content: e.detail.value
+    });
+  },
+  add_new_diary_content: function () {
+    this.data.current_edit_content_index = -1;
+    this.setData({
+      input_diary_content: "",
+      edit_btn_text: "记"
+    });
   }
 })
