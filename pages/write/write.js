@@ -10,7 +10,19 @@ Page({
     diary_content: [],
     current_edit_content_index: -1,
     edit_btn_text: "记",
-    event_lock: false
+    event_lock: false,
+    rollback_data_list: []
+  },
+  setDataForUI: function () {
+    var data_obj = {
+      diary_date: this.data.diary_date,
+      input_diary_content: this.data.input_diary_content,
+      diary_content: this.data.diary_content,
+      current_edit_content_index: this.data.current_edit_content_index,
+      edit_btn_text: this.data.edit_btn_text
+    }
+    this.setData(data_obj);
+    this.save_diary();
   },
   onLoad: function (options) {
     util.showCurrentPage(this);
@@ -36,10 +48,11 @@ Page({
             that.data.diary_content = res.data;
           },
           complete: function () {
-            that.setData({
-              diary_date: that.data.diary_date,
-              diary_content: that.data.diary_content
-            });
+            // that.setData({
+            //   diary_date: that.data.diary_date,
+            //   diary_content: that.data.diary_content
+            // });
+            that.setDataForUI();
           }
         });
       }
@@ -51,11 +64,11 @@ Page({
       key: this.data.diary_date,
       data: this.data.diary_content
     });
-    wx.showToast({
-      title: '保存成功',
-      icon: 'success',
-      duration: 1000
-    });
+    // wx.showToast({
+    //   title: '保存成功',
+    //   icon: 'success',
+    //   duration: 1000
+    // });
   },
   bindDiaryTypeChange: function (e) {
     var diary_content_index = e.currentTarget.dataset.idx;
@@ -100,7 +113,7 @@ Page({
           });
         } else if (res.tapIndex == 1) {
           that.diary_content_edit(e);
-        } else if (res.tapIndex == 1) {
+        } else if (res.tapIndex == 2) {
           that.diary_content_delete(e);
         }
       }
@@ -144,6 +157,7 @@ Page({
       this.data.diary_content[i].diary_content_index = i;
     }
     this.setData({
+      input_diary_content: "",
       diary_content: this.data.diary_content
     });
   },
