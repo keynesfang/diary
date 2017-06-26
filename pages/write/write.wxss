@@ -66,11 +66,11 @@ button[size="mini"] {
   left: 630rpx;
 }
 .diary_body {
-  margin-left: 5%; 
   margin-bottom: 100rpx;
 }
 .diary_content {
-  width: 95%;
+  padding: 15rpx;
+  width: 100%;
 }
 .diary_content_style {
   color: #000;
@@ -88,6 +88,7 @@ button[size="mini"] {
   margin-bottom: 100rpx;
 }
 .footer {
+  z-index: 9999;
   text-align: center;
   width: 100%;
   position: fixed;
@@ -112,5 +113,5 @@ button[size="mini"] {
 .slider_bar {
   margin: 15rpx 0 20rpx 40rpx;
   display: inline-block;
-  width: 450rpx;
+  width: 500rpx;
 }

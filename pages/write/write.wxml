@@ -1,6 +1,6 @@
 <!--write.wxml-->
 <template name="diary_content">
-  <view class="diary_content">
+  <view class="diary_content" style="background-color: {{bgcolor}}">
     <view class="diary_content_title">
       <picker class="picker" bindchange="bindDiaryTypeChange" value="{{diary_type_index}}" range="{{diary_type}}" data-idx="{{diary_content_index}}">
         <view class="picker tip">
@@ -46,11 +46,11 @@
  <!-- <button class="save" bindtap="save_diary">保 存</button> -->
 
   <view class="footer">
-    <button class="input_pos rollback weui-btn" bindtap="add_new_diary_content" type="primary" size="mini">撤 销</button>
+    <button class="input_pos rollback weui-btn" bindtap="rollback_data_for_UI" type="primary" size="mini">撤 销</button>
     <image class="input_image input_pos speak" src="/images/speak.png"></image>
     <input class="input_pos text_input" bindinput="bindDiaryInput" placeholder="输入日记内容" value="{{input_diary_content}}" />
     <image class="input_image input_pos smile" src="/images/smile.png"></image>
     <image class="input_image input_pos add" src="/images/add.png" bindtap="get_photo_operation"></image>
-    <button class="input_pos send weui-btn" bindtap="add_new_diary_content" type="primary" size="mini">录 入</button>
+    <button class="input_pos send weui-btn" bindtap="save_new_diary_content" type="primary" size="mini">保 存</button>
   </view>
 </view>
